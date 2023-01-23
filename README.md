@@ -10,3 +10,7 @@
 | Build jar                         | /             | `mvn clean package -P dev`                            |
 | Build Docker Image (Jar required) | /             | `docker build -t scooter-backend .` |
 | Run Docker from image             | /             | `docker run -p 8080:8080  scooter-backend`            |
+
+To delete GitHub image from docker compose:
+- in folder /docker
+- `docker-compose down -v`
