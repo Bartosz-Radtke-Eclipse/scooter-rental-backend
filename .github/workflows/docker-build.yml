@@ -26,7 +26,8 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
           cache: 'gradle'
-
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Build Gradle
         run: ./gradlew build
       - name: Extract metadata (tags, labels) for Docker
