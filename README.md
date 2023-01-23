@@ -1,3 +1,4 @@
+# Scooter Rental App
 ## Run app locally in docker compose
 1. Generate personal access token with repo and read packages access [instruction](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 2. login to GitHub container registry [instruction](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
