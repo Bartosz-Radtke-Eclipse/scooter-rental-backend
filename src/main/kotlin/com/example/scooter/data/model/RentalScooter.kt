@@ -18,7 +18,7 @@ data class RentalScooter(
     @OneToOne
     @JoinColumn(name = "scooter_id", referencedColumnName = "id")
     val scooter: Scooter,
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     val rentalDate: LocalDateTime,
 ){
     override fun equals(other: Any?): Boolean {

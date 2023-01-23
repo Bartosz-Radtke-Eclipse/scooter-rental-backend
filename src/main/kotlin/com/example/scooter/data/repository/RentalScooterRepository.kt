@@ -1,5 +1,6 @@
 package com.example.scooter.data.repository
 
+import com.example.scooter.data.model.Customer
 import com.example.scooter.data.model.RentalScooter
 import com.example.scooter.data.model.Scooter
 import org.springframework.data.jpa.repository.JpaRepository
@@ -12,4 +13,6 @@ interface RentalScooterRepository : JpaRepository<RentalScooter, Long>{
         scooter_serialNumber: String
     ): RentalScooter?
     fun existsByScooter(scooter: Scooter): Boolean
+
+    fun findAllByCustomer(customer: Customer): List<RentalScooter>
 }
