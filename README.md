@@ -7,7 +7,7 @@
 | What                              | Where         | Command                                               |
 |-----------------------------------| ------------- |-------------------------------------------------------|
 | Run mysql only                    | docker/mysql/ | `docker compose up -d`                                |
-| Run app on main                   | docker/       | `docker compose pull && docker compose up -d`         |
+| Run app on main branch with mysql | docker/       | `docker compose pull && docker compose up -d`         |
 | Build jar                         | /             | `mvn clean package -P dev`                            |
 | Build Docker Image (Jar required) | /             | `docker build -t scooter-backend .` |
 | Run Docker from image             | /             | `docker run -p 8080:8080  scooter-backend`            |
