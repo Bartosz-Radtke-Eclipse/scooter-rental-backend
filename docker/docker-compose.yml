@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: ghcr.io/Bartosz-Radtke-Eclipse/scooter:${BRANCH}
+    image: ghcr.io/Bartosz-Radtke-Eclipse/scooter-rental-backend:${BRANCH}
     ports:
       - '8080:8080'
     stdin_open: true
