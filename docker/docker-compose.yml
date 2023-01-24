@@ -28,7 +28,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/testscooter?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/scooter?autoReconnect=true&useSSL=false
     extra_hosts:
       - host.docker.internal:host-gateway
 
