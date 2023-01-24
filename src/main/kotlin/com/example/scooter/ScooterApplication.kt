@@ -7,24 +7,25 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
-
-@SpringBootApplication
-class ScooterApplication
-
 fun main(args: Array<String>) {
     runApplication<ScooterApplication>(*args)
 }
 
-@Bean
-fun corsFilter(): CorsFilter {
-    val urlBasedCorsConfigurationSource = UrlBasedCorsConfigurationSource()
-    val corsConfiguration = CorsConfiguration()
-    corsConfiguration.allowCredentials = true
-    corsConfiguration.allowedOrigins = listOf(
-        "http://localhost:3000"
-    )
+@SpringBootApplication
+class ScooterApplication {
 
-    corsConfiguration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE")
-    urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration)
-    return CorsFilter(urlBasedCorsConfigurationSource)
+
+    @Bean
+    fun corsFilter(): CorsFilter {
+        val urlBasedCorsConfigurationSource = UrlBasedCorsConfigurationSource()
+        val corsConfiguration = CorsConfiguration()
+        corsConfiguration.allowCredentials = true
+        corsConfiguration.allowedOrigins = listOf(
+            "http://localhost:3000"
+        )
+
+        corsConfiguration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE")
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration)
+        return CorsFilter(urlBasedCorsConfigurationSource)
+    }
 }
