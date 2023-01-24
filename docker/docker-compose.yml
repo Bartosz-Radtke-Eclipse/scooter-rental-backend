@@ -14,7 +14,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-      - 3306:3306
+      - "3306:3306"
     expose:
       - 3306
   app:
@@ -22,11 +22,13 @@ services:
       - db
     image: ghcr.io/bartosz-radtke-eclipse/scooter-rental-backend:${BRANCH}
     ports:
-      - 8080:8080
+      - "8080:8080"
+    expose:
+      - 8080
     stdin_open: true
     tty: true
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/testscooter?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/scooter?autoReconnect=true&useSSL=false
     extra_hosts:
       - host.docker.internal:host-gateway
 
