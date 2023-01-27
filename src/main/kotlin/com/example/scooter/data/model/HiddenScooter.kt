@@ -15,10 +15,10 @@ data class HiddenScooter(
     val scooter: Scooter,
     @ManyToOne
     @JoinColumn(name = "serviceman_id", referencedColumnName = "id")
-    val serviceman: Serviceman,
+    val serviceman: Serviceman?,
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    val customer: Customer?,
+    val customer: Customer,
     val reason:String
 ){
     override fun equals(other: Any?): Boolean {

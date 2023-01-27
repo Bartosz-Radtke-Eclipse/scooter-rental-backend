@@ -2,9 +2,11 @@ package com.example.scooter.services
 
 import com.example.scooter.data.dto.HandOverScooterDto
 import com.example.scooter.data.model.Customer
+import com.example.scooter.data.model.HiddenScooter
 import com.example.scooter.data.model.RentalScooter
 import com.example.scooter.data.model.Scooter
 import com.example.scooter.data.repository.CustomerRepository
+import com.example.scooter.data.repository.HiddenScooterRepository
 import com.example.scooter.data.repository.RentalScooterRepository
 import com.example.scooter.data.repository.ScooterRepository
 import com.example.scooter.exceptions.NotFoundException
@@ -18,10 +20,31 @@ class ScooterService(
     private val scooterRepository: ScooterRepository,
     private val rentalScooterRepository: RentalScooterRepository,
     private val customerRepository: CustomerRepository,
-    private val customerService: CustomerService
+    private val customerService: CustomerService,
+    private val hiddenScooterRepository: HiddenScooterRepository
 ) {
     fun getListOfAvailableScooters(): List<Scooter> {
         return scooterRepository.findAll().filter { !it.isHidden }
+    }
+
+    fun hideScooter(userName: String, serialNumber: String, reason: String?): HiddenScooter {
+        val customer = customerService.getCustomerByUserName(userName)
+        val scooter = getScooterFromSerialNumber(serialNumber)
+        checkIfScooterIsAvailable(scooter)
+        if (scooter.isHidden) {
+            throw IllegalArgumentException("Scooter is already hidden")
+        }
+        scooter.isHidden = true
+        scooterRepository.save(scooter)
+        return hiddenScooterRepository.save(
+            HiddenScooter(
+                scooter = scooter,
+                serviceman = null,
+                reason = reason ?: "no reason",
+                customer = customer
+            )
+        )
+
     }
 
     fun rentScooter(userName: String, serialNumber: String): RentalScooter {
@@ -53,6 +76,7 @@ class ScooterService(
         rentalScooterRepository.delete(rentalScooter)
         val scooter = rentalScooter.scooter
         scooter.isHidden = false
+        scooter.scooterStatus.remainingBatteryPercent -= diff.toInt()
         scooterRepository.save(scooter)
         return HandOverScooterDto(cost, diff.toString(), scooter.scooterStatus.locLat, scooter.scooterStatus.locLength)
     }

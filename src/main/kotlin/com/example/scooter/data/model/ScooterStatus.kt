@@ -13,7 +13,7 @@ data class ScooterStatus (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     val id: Long = 0,
-    val remainingBatteryPercent: Int,
+    var remainingBatteryPercent: Int,
     val locLat: String,
     val locLength: String
 ){

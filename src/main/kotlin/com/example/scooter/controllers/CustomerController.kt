@@ -21,6 +21,7 @@ class CustomerController(private val customerService: CustomerService) {
         )
     }
 
+
     @GetMapping("/info")
     @Throws(NotFoundException::class)
     fun getCustomerInfo(@RequestParam userName: String): ResponseEntity<CustomerInfoDto> {
