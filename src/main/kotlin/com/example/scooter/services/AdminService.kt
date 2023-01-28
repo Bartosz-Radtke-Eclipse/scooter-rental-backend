@@ -24,6 +24,12 @@ class AdminService(
         scooterRepository.delete(scooter)
     }
 
+    fun showAllScooters(userName: String): MutableList<Scooter> {
+        validateAdmin(userName)
+        return scooterRepository.findAll()
+    }
+
+
     fun addScooterToDb(adminCreateScooterDto: AdminCreateScooterDto): Scooter {
         validateAdmin(adminCreateScooterDto.userName)
         checkIfSerialNumberIsValid(adminCreateScooterDto)

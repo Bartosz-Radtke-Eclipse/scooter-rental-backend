@@ -30,10 +30,7 @@ class ScooterService(
     fun hideScooter(userName: String, serialNumber: String, reason: String?): HiddenScooter {
         val customer = customerService.getCustomerByUserName(userName)
         val scooter = getScooterFromSerialNumber(serialNumber)
-        checkIfScooterIsAvailable(scooter)
-        if (scooter.isHidden) {
-            throw IllegalArgumentException("Scooter is already hidden")
-        }
+        handOverScooter(userName, serialNumber)
         scooter.isHidden = true
         scooterRepository.save(scooter)
         return hiddenScooterRepository.save(

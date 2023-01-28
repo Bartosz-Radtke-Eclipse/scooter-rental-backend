@@ -1,7 +1,6 @@
 package com.example.scooter.services
 
 import com.example.scooter.data.model.HiddenScooter
-import com.example.scooter.data.model.Scooter
 import com.example.scooter.data.model.Serviceman
 import com.example.scooter.data.repository.HiddenScooterRepository
 import com.example.scooter.data.repository.ScooterRepository
@@ -14,13 +13,8 @@ import org.springframework.stereotype.Service
 class ServiceManService(
     private val hiddenScooterRepository: HiddenScooterRepository,
     private val servicemanRepository: ServicemanRepository,
-    private val scooterRepository: ScooterRepository
+    private val scooterRepository: ScooterRepository,
 ) {
-
-    fun showAllScooters(userName: String): MutableList<Scooter> {
-        validateAndGetServiceMan(userName)
-        return scooterRepository.findAll()
-    }
 
     fun restoreScooter(userName: String, serialNumber: String) {
         validateAndGetServiceMan(userName)
