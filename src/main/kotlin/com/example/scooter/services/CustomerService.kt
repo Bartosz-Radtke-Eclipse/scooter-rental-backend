@@ -32,8 +32,9 @@ class CustomerService(
                 it.rentalDate,
                 it.scooter.model,
                 it.scooter.scooterStatus.remainingBatteryPercent,
+                BigDecimal((calculateMinutesFromNow(it.rentalDate) * 0.5) +2),
                 calculateMinutesFromNow(it.rentalDate),
-                calculateSecondsFromNow(it.rentalDate)
+                calculateSecondsFromNow(it.rentalDate),
             )
         }
         return CustomerInfoDto(customer.balance, customer.user.userName, rentedScooters)
